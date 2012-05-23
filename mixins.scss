@@ -1,0 +1,141 @@
+/*
+ * Apply CSS3 box-shadows (one or multiple)
+ * @include boxShadow(0 1px 0 0 #fff, 0 1px 0 0 #f3f3f3 inset);
+ */
+@mixin boxShadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false) {
+	$params: $shadow1;
+	@if $shadow2 != false {
+		$params: $shadow1, $shadow2;
+	}
+	@else if $shadow3 != false {
+		$params: $shadow1, $shadow2, $shadow3;
+	}
+	@else if $shadow4 != false {
+		$params: $shadow1, $shadow2, $shadow3, $shadow4;
+	}
+	@else if $shadow5 != false {
+		$params: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5;
+	}
+	-webkit-box-shadow: $params;
+	box-shadow: $params;
+}
+
+/*
+ * Apply a CSS3 border radius (uniform, or different for horiz/vert)
+ * @include borderRadius(3px) or @include borderRadius(10px, 100px);
+ */
+@mixin borderRadius($radius: 3px, $verticalRadius: false) {
+	@if $verticalRadius {
+		-webkit-border-top-left-radius: $radius $verticalRadius;
+		-webkit-border-top-right-radius: $radius $verticalRadius;
+		-webkit-border-bottom-right-radius: $radius $verticalRadius;
+		-webkit-border-bottom-left-radius: $radius $verticalRadius;
+
+		border-top-left-radius: $radius $verticalRadius;
+		border-top-right-radius: $radius $verticalRadius;
+		border-bottom-right-radius: $radius $verticalRadius;
+		border-bottom-left-radius: $radius $verticalRadius;
+	}
+	@else {
+		-webkit-border-radius: $radius;
+		        border-radius: $radius;
+	}
+}
+
+	
+/*
+ * Apply a CSS3 border radius to the top corners only
+ * @include borderTopRadius(3px);
+ */
+@mixin borderTopRadius($radius: 3px) {
+	-webkit-border-top-right-radius: $radius;
+	-webkit-border-top-left-radius: $radius;
+	border-top-right-radius: $radius;
+	border-top-left-radius: $radius;
+}
+
+
+/*
+ * Apply a CSS3 border radius to the right corners only
+ * @include borderRightRadius(3px);
+ */
+@mixin borderRightRadius($radius: 3px) {
+	-webkit-border-top-right-radius: $radius;
+	-webkit-border-bottom-right-radius: $radius;
+	border-top-right-radius: $radius;
+	border-bottom-right-radius: $radius;
+}
+
+
+/*
+ * Apply a CSS3 border radius to the bottom corners only
+ * @include borderBottomRadius(3px);
+ */
+@mixin borderBottomRadius($radius: 3px) {
+	-webkit-border-bottom-right-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+	border-bottom-right-radius: $radius;
+	border-bottom-left-radius: $radius;
+}
+
+/*
+ * Apply a CSS3 border radius to the left corners only
+ * @include borderLeftRadius(3px);
+ */
+@mixin borderLeftRadius($radius: 3px) {
+	-webkit-border-top-left-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+	border-top-left-radius: $radius;
+	border-bottom-left-radius: $radius;
+}
+
+
+/*
+ * Apply a CSS3 linear gradient
+ *
+ * $from - The original color stop of the gradient
+ * $to - The final color stop of the gradient
+ * $start - The starting point of the gradient
+ *
+ * @include gradient(#fff, #000);
+ */
+@mixin gradient($from, $to, $solid: false, $start: top) {
+	@if ($solid) {
+		background-color: $solid;
+	} @else {
+		background-color: $from;
+	}
+	background-image: -webkit-linear-gradient($start, $from, $to);
+	background-image: -moz-linear-gradient($start, $from, $to);
+	background-image: -ms-linear-gradient($start, $from, $to);
+	background-image: -o-linear-gradient($start, $from, $to);
+	background-image: linear-gradient($start, $from, $to);
+}
+
+
+/*
+ * Apply a CSS3 transition
+ * @include @include transition(all .2s ease);
+ */
+@mixin transition ($value) {
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-o-transition: $value;
+  	-ms-transition: $value;
+ 	transition: $value;
+}
+
+
+/*
+ * Apply a CSS3 transform
+ * @include transform(scale(1.5));
+ */
+@mixin transform($value) {
+	-moz-transform: $value;
+	-o-transform: $value;
+	-webkit-transform: $value;
+	-ms-transform: $value;
+	transform: $value;
+	zoom: 1;
+}
+
