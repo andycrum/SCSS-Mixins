@@ -78,6 +78,7 @@
 	border-bottom-left-radius: $radius;
 }
 
+
 /*
  * Apply a CSS3 border radius to the left corners only
  * @include borderLeftRadius(3px);
@@ -139,3 +140,103 @@
 	zoom: 1;
 }
 
+
+/*
+ * Add a CSS3 to the element
+ * @include addTriangle(right, 6px, 20%, 1px, #ccc, #000);
+ */
+
+@mixin addTriangle($direction: up, $size: 10px, $offset: 50%, $border_width: 2px, $bg_color: #ccc, $border_color: #333)  {
+	position: relative;
+	background: $bg_color;
+	border: $border_width solid $border_color;
+	@if ($direction == up) {
+		&:after, &:before {
+			bottom: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-bottom-color: $bg_color;
+			border-width: $size;
+			left: $offset;
+			margin-left: -$size;
+		}
+		&:before {
+			border-bottom-color: $border_color;
+			border-width: ($size + ($border_width*2));
+			left: $offset;
+			margin-left: -($size + ($border_width*2));
+		}
+	} @else if ($direction == down) {
+		&:after, &:before {
+			top: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-top-color: $bg_color;
+			border-width: $size;
+			left: $offset;
+			margin-left: -$size;
+		}
+		&:before {
+			border-top-color: $border_color;
+			border-width: ($size + ($border_width*2));
+			left: $offset;
+			margin-left: -($size + ($border_width*2));
+		}
+	} @else if ($direction == left) {
+		&:after, &:before {
+			right: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-right-color: $bg_color;
+			border-width: $size;
+			top: $offset;
+			margin-top: -$size;
+		}
+		&:before {
+			border-right-color: $border_color;
+			border-width: ($size + ($border_width*2));
+			top: $offset;
+			margin-top: -($size + ($border_width*2));
+		}
+	} @else if ($direction == right) {
+		&:after, &:before {
+			left: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-left-color: $bg_color;
+			border-width: $size;
+			top: $offset;
+			margin-top: -$size;
+		}
+		&:before {
+			border-left-color: $border_color;
+			border-width: ($size + ($border_width*2));
+			top: $offset;
+			margin-top: -($size + ($border_width*2));
+		}
+	}
+}
