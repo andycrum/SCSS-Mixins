@@ -1,3 +1,3 @@
 SCSS Mixins
 ========
-Hi. These are some SCSS mixins that I find myself using pretty often.
+Mixins.scss is just a file full of some SCSS mixins that I find myself using pretty often.

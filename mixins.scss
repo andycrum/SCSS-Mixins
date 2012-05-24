@@ -115,6 +115,24 @@
 
 
 /*
+ * Apply a CSS3 linear gradient, automatically setting dark color
+ *
+ * $color - The original color stop of the gradient
+ *
+ * @include simpleGradient(#0c0);
+ */
+@mixin simpleGradient($color) {
+	$darkerColor: darken($color, 20%);
+	background-image: -webkit-linear-gradient(top, $color, $darkerColor);
+	background-image: -moz-linear-gradient(top, $color, $darkerColor);
+	background-image: -ms-linear-gradient(top, $color, $darkerColor);
+	background-image: -o-linear-gradient(top, $color, $darkerColor);
+	background-image: linear-gradient(top, $color, $darkerColor);
+}
+
+
+
+/*
  * Apply a CSS3 transition
  * @include @include transition(all .2s ease);
  */
